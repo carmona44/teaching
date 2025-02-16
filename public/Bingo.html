@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .bingo-card {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            width: 250px;
+            margin: 20px auto;
+        }
+        .cell {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #000;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cell.marked {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .generate-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bingo Online (0-30)</h1>
+    <button class="generate-btn" onclick="generateBingoCard()">Generar nuevo cartón</button>
+    <div class="bingo-card" id="bingoCard"></div>
+
+    <script>
+        function generateBingoCard() {
+            const bingoCard = document.getElementById("bingoCard");
+            bingoCard.innerHTML = "";
+            let numbers = new Set();
+            while (numbers.size < 25) {
+                numbers.add(Math.floor(Math.random() * 31));
+            }
+            numbers = [...numbers];
+            numbers.forEach(num => {
+                let cell = document.createElement("div");
+                cell.className = "cell";
+                cell.textContent = num;
+                cell.onclick = () => cell.classList.toggle("marked");
+                bingoCard.appendChild(cell);
+            });
+        }
+        generateBingoCard();
+    </script>
+</body>
+</html>
