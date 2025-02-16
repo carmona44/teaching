@@ -8,19 +8,21 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 20px;
         }
         .bingo-card {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 10px;
-            width: 250px;
-            margin: 20px auto;
+            width: 100%;
+            margin: 40px 0px;
         }
         .cell {
             padding: 20px;
             background-color: #f0f0f0;
             border: 1px solid #000;
-            font-size: 20px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
         }
@@ -49,7 +51,7 @@
             const bingoCard = document.getElementById("bingoCard");
             bingoCard.innerHTML = "";
             let numbers = new Set();
-            while (numbers.size < 25) {
+            while (numbers.size < 15) {
                 numbers.add(Math.floor(Math.random() * 31));
             }
             numbers = [...numbers];
